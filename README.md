@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="dist/assets/icon-128.png" alt="QuickMark" width="80" height="80">
+  <img src="dist/assets/icon-128.png" alt="QuickMark" width="80" height="108">
 </p>
 
 <h1 align="center">QuickMark</h1>
