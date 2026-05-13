@@ -169,5 +169,9 @@ See [LICENSE](LICENSE) for details.
 <p align="center">
   Built by <a href="https://softrealms.com">SoftRealms</a><br>
   If QuickMark saves you time, consider supporting its development ☕
-  [![PayPal](https://img.shields.io/badge/PayPal-Support-blue?logo=paypal)](https://paypal.me/softrealms)
 </p>
+
+
+[![PayPal](https://img.shields.io/badge/PayPal-Support-blue?logo=paypal)](https://paypal.me/softrealms)
+
+---
