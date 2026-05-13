@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickMark</title>
+  <script type="module" crossorigin src="/assets/popup.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/favicon.js">
+  <link rel="stylesheet" crossorigin href="/assets/popup.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAArCAYAAAAZvYo3AAABgmlDQ1BzUkdCIElFQzYxOTY2LTIuMQAAKJF1kbtLA0EQh78kvvBBBEUsLIIkVio+QLSxSPAFapFE8NVczksi5OJxF5FgK9gKCqKNr0L/Am0Fa0FQFEGsxVLRRuWcywkRMbPMzre/3Rl2Z8Ebz6i6VdYFejZnRkfCgemZ2UDlM+VU0EQIn6JaxkRsOE5Je7/F48TrDqdW6XP/Ws2CZqngqRIeVA0zJzwqPL6SMxzeEm5U08qC8IlwuykXFL5x9ITLTw6nXP502IxHI+CtFw6kfnHiF6tpUxeWlxPUM8vqz32cl9Rq2amYxFbxFiyijBAmwBhDROijmwGZ++igh05ZUSK/q5A/yZLkqjIb5DFZJEWaHO2iLkt1TWJSdE1GhrzT/799tZK9PW712jCUP9r2awgqN+Frw7Y/Dmz76xB8D3CeLeYv7UP/m+gbRS24B/41OL0oaoltOFuH5ntDMZWC5BP3JpPwcgx1M9BwBdVzbs9+9jm6g/iqfNUl7OxCm5z3z38DPa5n0y7Qtg8AAAAJcEhZcwAALiMAAC4jAXilP3YAAAi8SURBVFiFrZj7c11VFcc/65xzT+4rr9u8SEqTCjYFbS1iC1RQxDegoCiCODriMKO/4PiDoP+B0x/8gXHkB8dhdIQBxoqiDMqoxVdqkTIF09I3aVpKmoa0Se4r57X8YZ9zc+7NDTAOe2bffc8++6z13d+19tprbwFg14QFZIE8UIz/O4DFu1MiIADqQBmoAnUe2BlJrDwPDAOb4joc9znvkvIoVnoWOBrXGaDsAC4whFo3OJH1rUylfI3tL1si+vaiBVAQAUXMo2I642IeFcUicrJR0Nn5gi/+I4g+D0w7GLrHXKfwVWfvb69b3vMkWllMCRWjoUlr+tECBBUHLAuiENHQTFrVQNAIBaxit9Vx493Xyo5bAk+XpoG5xPbrnXrlau+fT0NlARGBhvIVlYIgMR4RQcQCsVAnjxZGWHfpViQ/BHYHgpXCLViAlheo//HnuKF3NbAByFqxCXrwvS4Jg3i4Iql2Zd4ac2reIjbYebKljXz9wfu59/Gfcc8Pv4tb7ENj7WkZABr4UF/OASXAtTCe7qoiNOyX1CZLppCImbndgRQuYftnb2b5hut5ZSiHN9BPtlBoMZWmwGjsJ7iAYzUL1ma9zS/j1gKxUcslypQYuPwqttx9C28OdyMKOjvP0sJS4o1tSyzNavw0TVJoAyLuSGwuDlGmm87hcb7xg69xdGiAICMEi3WqU1NEvm/obIehpW9VoJHWDogXWOwVYqNOjnzfKLffeweTGy9judvGj6Bvoc7pE6cgWsYs/YZdWYvdVQBUtYEiUasN17dRqwPJ9nPtJ2+iev0OFtZlCEPwQxiNPI4dPA6Rt0JmOi5I6v8qAK1+xorrJEPVctBMD+uv/CAbv/hpZgc6G8q9akR08L9UyxVEg1WK4tnFclfetTCgcQBqBrJCfZHShs3c/J2vcHL9EJ4teD54HvQsBRx66SCENaNIY/IbyzEtcEVyS6yPtQsrETCh3s7j9lzKnd++m8nLx6llbUIfosAAGHOU3+/ZDxqgtouqg2iARH7KFtoSVdttNmIi4Ar9xu5WYZCPfOFWTmy+iqXuDBpAGFevpuTnzxK6vfSMbjWxX338pVnqc6eQoBbTvnqJve1up+Kgbi/jOz5M1yc+zrH+AoEPURQD8MGvwRFrkG0PfJ8oMu8iL0JOvczkYw9TPn0kxbE0YWgAMARp47+h3kHdbnpHt3DTffewp28QPxIIV5RHPgSB8LKfJ8zlCT0IPSPriv4K2Z4SS2cE0fT8EzZaGJAYhGmFyM6RH7icL3/vmzybGSa0bKjHMwyM8tCL26R6EC5DT+ih0/s5f/IUotq8smRNJ0wXi0znENtv/zx7i+NUshmsmpEQRUZpolhjZwx9COtQjHwu817kP7ufRuvzSByUkkm2NQGaLNN43xOL4uAGwg/s4JSdR6pmu1cFDUyN/LhNqgd2PWK0MMX+hx/BP3cMK6ylVawqKQDaaFWMRwReGWtpjrGwgNhWTJ0Q2lmOey5E0gRAl+ES9wKndj9O/cwkVrhIemcVIHrbVSAm8hMFVKYP8tJDPyI/PAxWBmwXcbv53H13cfjcCGTsJjZK1IiO/5n5A3ux/HlEozZ7i5hwv9oJZYUJMZFAgzLV116m8tpBE4adIoWhzZxb6iIIbMQzygkgH/gMdL3KsWd/AwvTiPptlJsI+dYMpLFqhOIjhBD6qJ1j09XjHD5toz5oCPhg+xEjgzMc+elP0NmjWFEtJaRhAVSFVlSpvaDVRVoyIrHAzjF8xSZOzLhoFbQKUlX6MrO8/odfEM0cRsIlRDRxl+YJCSZpabsK2mUC8Z6gcSbk5orUOjYS0GGy/BC67QrR9F+oHngey59rjNamsNsuBK1iYC0STAhTy2Hde8Z4fa7TnG9qkF326es+xPk/PQGVMwih8Z2GkpSqNVL7ZgDt0iFi21lZOi/ZwOxiD9ShIwjpKx7jxKMPw+I0VovTpYJ6IqTRpykbvOOzn2RyaG4YP+zEqitd7hvM/eNR9OwrWGGZ9EmqkcI3mrUT1OaMqGlcs8c6+QJhboTli9DlLBG8/gzLr+5BgsV485YmUSsJXaq0yZRTu6G2jI/XrJh8Pgpq1JYvUuw9j1Xdx5t7n4LgglHeyGNaVk7TOaN9aY4D2uy3K7NRosVZ5v72S+zu56i/cRLKb5g34gBhvOG0yelVm9yygXYVgHSEUm0crRowIo9w5lWCc8cACyuTA7dkNgG/gvqVODKROv20nq5We7nTPKBdSVzKMsOtLN1jV2Jv/hDhpvejloVz5AD+5L8oTx1ENEAbjKRXAXEUWisUp00msb9IElYcVFyyvUP0bL+VhcERvKHS4aDD3Y+gzuYt2ztK68cH3nuahX27qS/MIXjxgSZl1zZnkwRA1MSDmnwAdVBxEKdAz+g47vV3MVvkXNi/7klgApgGCAq5Z4KNuZ21fOauUv+D/e7exyhPTRKFNYTA7CUJmyLJYogSABHgIRKqim0saKHYiJOnMLyJ3Pt2Ut+0jQuu/xydxd8BL8bKy7Hkk8DJaLD/8FyhelvhM/d9qufofuqHJqjPHEb9WmOOip0ExToQOIAHzKtbuGAVuvrCykXApiPfS/d1d1IdGWW+rzQZFq2ncIoTmPudOcxukDBXj5/nKOanKh3evtrW7bflBsa29k4fZ2HfYwT1CqA4vQNIrqMM3jzgCbsmuoBtXKjdX/KcO2TPQzi5AXTLHZx3F+d0ZPAJRP4OHCK+WAI8HtjZMBuQ3LS5mFu2IeBKouijcnb+zv6g1Kev/IqwfhFuvJ95Z/EZSl0/Bl4Sdk248Qc7mLvwJTfsvE6jQP1O/wWKnX8FDgBTwGKsOOCtyq6J5OKrCxgDtlFe/JizkLlGrIwdOBf3aX/fr4F/AzOSuiPsw9zb9MWiZjHXavMNultnvTaI5OYlj7mKGQYG4r5Z4Ezc1iX1QXJj5pI4pqnBO1bcHkjCiBsD8Igd0FxUrv5gpfy/itsDaSv3f+NgFTM5zyC/AAAAAElFTkSuQmCC" alt="" class="header-icon"> QuickMark</h1>
+      <div class="header-buttons">
+        <button id="about-btn" class="about-btn" aria-label="About">ⓘ</button>
+        <button id="settings-btn" class="settings-btn" aria-label="Settings">⚙</button>
+      </div>
+    </header>
+    <main id="main-content">
+      <!-- Tab Navigation -->
+      <nav class="tab-nav" id="tab-nav">
+        <button class="tab-btn active" data-section="essentials" draggable="true">Essentials</button>
+        <button class="tab-btn" data-section="favorites" draggable="true">Favorites</button>
+      </nav>
+
+      <!-- Essentials Section -->
+      <section id="essentials-section" class="section active">
+        <div class="section-header">
+          <h2>Essentials</h2>
+        </div>
+        <div id="essentials-grid" class="tool-grid">
+          <!-- Tool cards rendered here -->
+        </div>
+      </section>
+
+      <!-- Favorites Section -->
+      <section id="favorites-section" class="section">
+        <div class="section-header">
+          <h2>Favorites</h2>
+          <button id="add-tool-btn" class="add-btn" aria-label="Add tool">+</button>
+        </div>
+        <div id="favorites-search-container" class="search-container hidden">
+          <input type="text" id="favorites-search" class="search-input" placeholder="Search favorites..." aria-label="Search favorites">
+          <button id="favorites-search-clear" class="search-clear hidden" aria-label="Clear search">&times;</button>
+        </div>
+        <div id="add-tool-form" class="add-tool-form hidden">
+          <input type="text" id="tool-url-input" placeholder="Enter URL (example.com)" required>
+          <input type="text" id="tool-name-input" placeholder="Name (optional)">
+          <div class="form-actions">
+            <button id="submit-tool-btn" class="submit-btn">Add</button>
+            <button id="cancel-tool-btn" class="cancel-btn">Cancel</button>
+          </div>
+        </div>
+        <div id="favorites-grid" class="tool-grid">
+          <!-- Tool cards rendered here -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Message Toast -->
+    <div id="message-toast" class="message-toast hidden"></div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal hidden">
+      <div class="modal-content">
+        <p>Remove this tool from Favorites?</p>
+        <div class="modal-actions">
+          <button id="confirm-delete-btn" class="delete-btn">Remove</button>
+          <button id="cancel-delete-btn" class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settings-panel" class="settings-panel hidden">
+      <div class="settings-header">
+        <h2>Settings</h2>
+        <button id="close-settings-btn" class="close-btn" aria-label="Close settings">×</button>
+      </div>
+      
+      <!-- Export/Import Section -->
+      <div class="settings-section">
+        <h3>📦 Backup & Restore</h3>
+        <p class="settings-description">Export your configuration to backup or transfer to another device.</p>
+        <div class="settings-actions">
+          <button id="export-btn" class="settings-btn primary">Export Config</button>
+          <button id="import-btn" class="settings-btn secondary">Import Config</button>
+          <input type="file" id="import-file-input" accept=".json" class="hidden">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- About Panel -->
+    <div id="about-panel" class="settings-panel hidden">
+      <div class="settings-header">
+        <h2>About QuickMark</h2>
+        <button id="close-about-btn" class="close-btn" aria-label="Close about">×</button>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-logo">
+          <img src="/assets/icon-128.png" alt="QuickMark" class="about-icon">
+          <div class="about-version">
+            <h3>QuickMark</h3>
+            <span class="version-number">Version 1.0.0</span>
+          </div>
+        </div>
+
+        <div class="about-description">
+          <p>Quick access to your favorite tools from any webpage. Organize bookmarks, discover new tools, and access them instantly with the floating widget.</p>
+        </div>
+
+        <div class="about-features">
+          <h4>Features</h4>
+          <ul>
+            <li>Floating widget on every page</li>
+            <li>Save and organize your favorite tools</li>
+            <li>Discover new tools</li>
+            <li>Customizable appearance</li>
+            <li>Keyboard shortcut (Alt+A)</li>
+          </ul>
+        </div>
+
+        <div class="about-tips">
+          <h4>Tips</h4>
+          <ul>
+            <li>Drag the widget to reposition it on any edge</li>
+            <li>Right-click any page to add it to Favorites</li>
+            <li>Click × on the widget to temporarily hide it</li>
+            <li>Drag tabs to reorder sections</li>
+          </ul>
+        </div>
+
+        <div class="about-footer">
+          <p class="donation-text">If you find QuickMark useful, consider supporting its development ☕</p>
+          <a href="https://paypal.me/softrealms" target="_blank" rel="noopener noreferrer" class="donation-link">Support via paypal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

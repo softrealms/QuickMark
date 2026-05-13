@@ -1,0 +1,765 @@
+/**
+ * Floating Widget Styles
+ * - Collapsed state: 32x32px, 50% opacity, circular
+ * - Expanded state: tool grid
+ * - Hover: 100% opacity
+ * - Smooth transitions: 200ms
+ * - Customizable colors and sizes via CSS variables
+ */
+
+/* CSS Variables for Widget Customization */
+/* Customizable colors and sizes */
+:root {
+  --widget-primary-color: #1a3a5c;
+  --widget-secondary-color: #0d2137;
+  --widget-button-size: 32px;
+  --widget-tool-icon-size: 24px;
+  --widget-panel-width: 180px;
+}
+
+/* Widget Container */
+.quickmark-widget {
+  position: fixed;
+  z-index: 2147483647; /* Maximum z-index to stay on top */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.quickmark-widget * {
+  box-sizing: border-box;
+}
+
+/* Collapsed Button State */
+/* Display with 50% opacity when collapsed */
+.quickmark-widget-button {
+  --widget-opacity: 1;
+  width: var(--widget-button-size);
+  height: var(--widget-button-size);
+  border-radius: 12px;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: var(--widget-opacity);
+  transition: opacity 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Widget Button Icon */
+.widget-button-icon {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(138, 180, 248, 0.5));
+}
+
+/* Increase opacity to 100% on hover */
+.quickmark-widget-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 12px rgba(138, 180, 248, 0.3);
+}
+
+.quickmark-widget-button:hover .widget-button-icon {
+  filter: drop-shadow(0 0 6px rgba(138, 180, 248, 0.7));
+}
+
+/* Dragging state */
+.quickmark-widget.dragging .quickmark-widget-button {
+  opacity: 1;
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+
+/* Expanded Panel */
+.quickmark-widget-panel {
+  display: none;
+  position: absolute;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  min-width: var(--widget-panel-width);
+  overflow: hidden;
+}
+
+/* Default: expand upward (panel above button) */
+.quickmark-widget-panel.expand-up,
+.quickmark-widget-panel:not(.expand-down) {
+  bottom: calc(var(--widget-button-size) + 8px);
+}
+
+/* Expand downward when near top of viewport */
+.quickmark-widget-panel.expand-down {
+  top: calc(var(--widget-button-size) + 8px);
+  bottom: auto;
+}
+
+/* Horizontal: default align right edge of panel to right edge of button */
+.quickmark-widget-panel:not(.expand-right) {
+  right: 0;
+}
+
+/* Horizontal: align left edge of panel to left edge of button (when widget is near left) */
+.quickmark-widget-panel.expand-right {
+  left: 0;
+  right: auto;
+}
+
+/* Collapsed state */
+.quickmark-widget.collapsed .quickmark-widget-panel {
+  display: none;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.quickmark-widget.collapsed .quickmark-widget-button {
+  display: flex;
+}
+
+/* Expanded state */
+/* Animate transition smoothly (200ms) */
+.quickmark-widget.expanded .quickmark-widget-panel {
+  display: block;
+  animation: widgetExpand 120ms ease-out forwards;
+}
+
+/* Transform origin based on expand direction */
+.quickmark-widget.expanded .quickmark-widget-panel.expand-up,
+.quickmark-widget.expanded .quickmark-widget-panel:not(.expand-down) {
+  transform-origin: bottom right;
+}
+
+.quickmark-widget.expanded .quickmark-widget-panel.expand-up.expand-right,
+.quickmark-widget.expanded .quickmark-widget-panel:not(.expand-down).expand-right {
+  transform-origin: bottom left;
+}
+
+.quickmark-widget.expanded .quickmark-widget-panel.expand-down {
+  transform-origin: top right;
+}
+
+.quickmark-widget.expanded .quickmark-widget-panel.expand-down.expand-right {
+  transform-origin: top left;
+}
+
+.quickmark-widget.expanded .quickmark-widget-button {
+  opacity: 1;
+}
+
+/* Collapsing state - for smooth collapse animation */
+.quickmark-widget.collapsing .quickmark-widget-panel {
+  display: block;
+  animation: widgetCollapse 100ms ease-in forwards;
+}
+
+/* Transform origin for collapse based on expand direction */
+.quickmark-widget.collapsing .quickmark-widget-panel.expand-up,
+.quickmark-widget.collapsing .quickmark-widget-panel:not(.expand-down) {
+  transform-origin: bottom right;
+}
+
+.quickmark-widget.collapsing .quickmark-widget-panel.expand-up.expand-right,
+.quickmark-widget.collapsing .quickmark-widget-panel:not(.expand-down).expand-right {
+  transform-origin: bottom left;
+}
+
+.quickmark-widget.collapsing .quickmark-widget-panel.expand-down {
+  transform-origin: top right;
+}
+
+.quickmark-widget.collapsing .quickmark-widget-panel.expand-down.expand-right {
+  transform-origin: top left;
+}
+
+.quickmark-widget.collapsing .quickmark-widget-button {
+  animation: buttonPulse 100ms ease-out;
+}
+
+@keyframes widgetExpand {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes widgetCollapse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Panel Header */
+/* - Customizable gradient colors */
+.quickmark-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: linear-gradient(
+    135deg,
+    var(--widget-primary-color) 0%,
+    var(--widget-secondary-color) 100%
+  );
+  color: white;
+}
+
+.quickmark-widget-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Close Button */
+/* Close button for temporary hide */
+.quickmark-widget-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 150ms ease;
+  border-radius: 4px;
+}
+
+.quickmark-widget-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Header buttons container */
+.quickmark-widget-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Edit Button */
+.quickmark-widget-edit {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 13px;
+  opacity: 0.6;
+  transition: opacity 150ms ease, background 150ms ease;
+  border-radius: 4px;
+}
+
+.quickmark-widget-edit:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.quickmark-widget-edit.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Edit Panel */
+.quickmark-widget-edit-panel {
+  padding: 4px 6px;
+  min-width: 220px;
+}
+
+.quickmark-edit-header {
+  font-size: 11px;
+  color: #888;
+  padding: 2px 2px 4px;
+  font-weight: 500;
+}
+
+.quickmark-edit-list {
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.quickmark-edit-list.expanded {
+  max-height: none;
+}
+
+.quickmark-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 100ms ease;
+  font-size: 12px;
+  color: #e0e0e0;
+}
+
+.quickmark-edit-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.quickmark-edit-checkbox {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #8ab4f8;
+  flex-shrink: 0;
+}
+
+.quickmark-edit-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.quickmark-edit-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.quickmark-edit-actions {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4px;
+}
+
+.quickmark-edit-action-btn {
+  flex: 1;
+  padding: 3px 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ccc;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.quickmark-edit-action-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.quickmark-edit-done-btn {
+  width: 100%;
+  padding: 5px 0;
+  margin-top: 4px;
+  border: none;
+  border-radius: 4px;
+  background: var(--widget-primary-color, #1a3a5c);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 100ms ease, opacity 100ms ease;
+}
+
+.quickmark-edit-done-btn:hover {
+  opacity: 0.85;
+}
+
+/* Tools Grid */
+.quickmark-widget-tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px;
+}
+
+/* Tool Button */
+.quickmark-widget-tool {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #2d2d2d;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease, transform 150ms ease;
+  padding: 6px;
+}
+
+.quickmark-widget-tool:hover {
+  background: #3d3d3d;
+  transform: scale(1.05);
+}
+
+.quickmark-widget-tool:active {
+  transform: scale(0.95);
+}
+
+.quickmark-widget-tool img {
+  width: var(--widget-tool-icon-size);
+  height: var(--widget-tool-icon-size);
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .quickmark-widget-tool {
+    background: #3d3d3d;
+  }
+
+  .quickmark-widget-tool:hover {
+    background: #4d4d4d;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .quickmark-widget-button,
+  .quickmark-widget-panel,
+  .quickmark-widget-tool,
+  .quickmark-widget-close {
+    transition: none;
+  }
+
+  @keyframes widgetExpand {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+
+/* ============================================
+   Tool Selector Component Styles
+  
+   ============================================ */
+
+/* Tool Selector Container */
+.tool-selector {
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.tool-selector-header {
+  margin-bottom: 16px;
+}
+
+.tool-selector-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.tool-selector-section-title {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+}
+
+/* Selected Tools Section (Drag-and-Drop) */
+/* Reorder selected tools via drag-and-drop */
+.tool-selector-selected-section {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tool-selector-selected-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Draggable Tool Item */
+.tool-selector-draggable-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: grab;
+  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  user-select: none;
+}
+
+.tool-selector-draggable-item:hover {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+.tool-selector-draggable-item:focus {
+  outline: 2px solid var(--widget-primary-color);
+  outline-offset: 2px;
+}
+
+/* Drag Handle */
+.tool-selector-drag-handle {
+  color: #999;
+  font-size: 12px;
+  letter-spacing: -2px;
+  cursor: grab;
+  padding: 0 4px;
+}
+
+.tool-selector-draggable-item:hover .tool-selector-drag-handle {
+  color: #666;
+}
+
+/* Order Indicator */
+.tool-selector-order {
+  margin-left: auto;
+  font-size: 11px;
+  color: #999;
+  font-weight: 500;
+}
+
+/* Dragging State */
+.tool-selector-draggable-item.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #e8e8e8;
+}
+
+/* Drag Over State */
+.tool-selector-draggable-item.drag-over {
+  border-color: var(--widget-primary-color);
+  background: #f0f4ff;
+}
+
+.tool-selector-draggable-item.drag-over-top {
+  border-top: 2px solid var(--widget-primary-color);
+}
+
+.tool-selector-draggable-item.drag-over-bottom {
+  border-bottom: 2px solid var(--widget-primary-color);
+}
+
+/* Available Tools Section */
+.tool-selector-available-section {
+  margin-bottom: 12px;
+}
+
+/* Tool List */
+.tool-selector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Tool Item (Checkbox) */
+.tool-selector-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.tool-selector-item:hover:not(.disabled) {
+  background: #f0f0f0;
+  border-color: #e0e0e0;
+}
+
+.tool-selector-item.selected {
+  background: #e8f0fe;
+  border-color: var(--widget-primary-color);
+}
+
+.tool-selector-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Checkbox */
+.tool-selector-checkbox {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--widget-primary-color);
+}
+
+.tool-selector-item.disabled .tool-selector-checkbox {
+  cursor: not-allowed;
+}
+
+/* Label */
+.tool-selector-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.tool-selector-item.disabled .tool-selector-label {
+  cursor: not-allowed;
+}
+
+/* Favicon */
+.tool-selector-favicon {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  object-fit: contain;
+}
+
+/* Tool Name */
+.tool-selector-name {
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Selection Count */
+.tool-selector-count {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.tool-selector-count-text {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.tool-selector-count.at-max {
+  background: #fff3cd;
+}
+
+.tool-selector-count.at-max .tool-selector-count-text {
+  color: #856404;
+}
+
+/* Dark mode support for Tool Selector */
+@media (prefers-color-scheme: dark) {
+  .tool-selector {
+    background: #2d2d2d;
+  }
+
+  .tool-selector-title {
+    color: #e0e0e0;
+  }
+
+  .tool-selector-section-title {
+    color: #aaa;
+  }
+
+  .tool-selector-selected-section {
+    border-bottom-color: #444;
+  }
+
+  .tool-selector-draggable-item,
+  .tool-selector-item {
+    background: #3d3d3d;
+    border-color: #444;
+  }
+
+  .tool-selector-draggable-item:hover,
+  .tool-selector-item:hover:not(.disabled) {
+    background: #4d4d4d;
+    border-color: #555;
+  }
+
+  .tool-selector-item.selected {
+    background: #3d4d6d;
+    border-color: var(--widget-primary-color);
+  }
+
+  .tool-selector-drag-handle {
+    color: #777;
+  }
+
+  .tool-selector-draggable-item:hover .tool-selector-drag-handle {
+    color: #aaa;
+  }
+
+  .tool-selector-order {
+    color: #777;
+  }
+
+  .tool-selector-name {
+    color: #e0e0e0;
+  }
+
+  .tool-selector-count {
+    background: #3d3d3d;
+  }
+
+  .tool-selector-count-text {
+    color: #aaa;
+  }
+
+  .tool-selector-count.at-max {
+    background: #4d4030;
+  }
+
+  .tool-selector-count.at-max .tool-selector-count-text {
+    color: #ffc107;
+  }
+}
+
+/* Reduced motion support for Tool Selector */
+@media (prefers-reduced-motion: reduce) {
+  .tool-selector-draggable-item,
+  .tool-selector-item {
+    transition: none;
+  }
+}
