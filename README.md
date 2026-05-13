@@ -80,7 +80,7 @@ QuickMark is a lightweight Chrome extension that gives you instant access to you
 
 ### From GitHub Release
 
-1. Download this repository (Code → Download ZIP) and extract it or from the [Releases](https://github.com/softrealms/quickmark/releases) page
+1. Download this repository (Code → Download ZIP) and extract it.
 2. Unzip the file
 3. Open `chrome://extensions/` in Chrome
 4. Enable "Developer mode" (top right toggle)
